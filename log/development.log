@@ -148,3 +148,127 @@ Migrating to CreateStudents (1)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
   [1m[35mSQL (0.3ms)[0m  INSERT INTO "students" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["first_name", "Morty"], ["last_name", "Smith"], ["created_at", "2017-11-28 15:01:02.845645"], ["updated_at", "2017-11-28 15:01:02.845645"]]
   [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-04-24 21:30:35.235180"], ["updated_at", "2019-04-24 21:30:35.235180"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Rick"], ["last_name", "Sanchez"], ["created_at", "2019-04-24 21:30:44.655948"], ["updated_at", "2019-04-24 21:30:44.655948"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "students" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "Morty"], ["last_name", "Smith"], ["created_at", "2019-04-24 21:30:44.658431"], ["updated_at", "2019-04-24 21:30:44.658431"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2019-04-24 17:31:37 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/railties-5.0.7.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/railties-5.0.7.2/lib/rails/templates/rails/welcome/index.html.erb (4.4ms)
+Completed 200 OK in 25ms (Views: 11.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/students" for ::1 at 2019-04-24 17:40:06 -0400
+Processing by StudentsController#show as HTML
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `empty?' for nil:NilClass):
+  
+app/controllers/students_controller.rb:3:in `show'
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.8ms)
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (116.6ms)
+Started GET "/students" for ::1 at 2019-04-24 17:45:29 -0400
+Processing by StudentsController#show as HTML
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 469ms (Views: 469.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/students" for ::1 at 2019-04-24 17:55:09 -0400
+Processing by StudentsController#show as HTML
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 51ms (Views: 44.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/students" for ::1 at 2019-04-24 17:55:10 -0400
+Processing by StudentsController#show as HTML
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 30ms (Views: 26.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/students" for ::1 at 2019-04-24 17:58:47 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StudentsController#show as HTML
+  Rendering students/show.html.erb within layouts/application
+  Rendered students/show.html.erb within layouts/application (7.5ms)
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <h1>Students page</h1>
+    2: 
+    3: <ul>
+    4: <%@students.each do |student|%>
+    5:   <li><%=student.name%></li>
+    6: <%end%>
+    7: </ul>
+  
+app/views/students/show.html.erb:4:in `_app_views_students_show_html_erb___800441670057769582_70186101986300'
+app/controllers/students_controller.rb:3:in `show'
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.3ms)
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (114.1ms)
+Started GET "/students" for ::1 at 2019-04-24 17:59:23 -0400
+Processing by StudentsController#show as HTML
+  Rendering students/show.html.erb within layouts/application
+  [1m[36mStudent Load (0.6ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  Rendered students/show.html.erb within layouts/application (12.5ms)
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 1.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `name' for #<Student:0x007faaf36ab6e8>):
+    2: 
+    3: <ul>
+    4: <%@students.each do |student|%>
+    5:   <li><%=student.name%></li>
+    6: <%end%>
+    7: </ul>
+  
+app/views/students/show.html.erb:5:in `block in _app_views_students_show_html_erb___800441670057769582_70186086894580'
+app/views/students/show.html.erb:4:in `_app_views_students_show_html_erb___800441670057769582_70186086894580'
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.2ms)
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendering /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/WillSinn/.rvm/gems/ruby-2.3.4/gems/actionpack-5.0.7.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (102.9ms)
+Started GET "/students" for ::1 at 2019-04-24 17:59:46 -0400
+Processing by StudentsController#show as HTML
+  Rendering students/show.html.erb within layouts/application
+  [1m[36mStudent Load (0.2ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  Rendered students/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 261ms (Views: 255.3ms | ActiveRecord: 0.2ms)
+
+
